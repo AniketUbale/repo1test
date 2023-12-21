@@ -2,14 +2,14 @@ pipeline {
     agent {
         label {
             label "built-in"
-            customWorkspace "/mnt/repo1"
+            customWorkspace "/mnt/jenkins-wsp"
         }
     }
     
     stages{
         stage('delete'){
             steps{
-                sh "rm -rf /mnt/repo1/*"
+                sh "rm -rf /mnt/repo1test/*"
             }
         }
         stage('clone'){
@@ -21,7 +21,7 @@ pipeline {
             steps{
                 sh "yum install httpd -y"
                 sh "service httpd start"
-                sh "cp -r /mnt/reo-2/index.html /var/www/html/"
+                sh "cp -r /mnt/repo1test/index.html /var/www/html/"
                 sh "chmod -R 777 /var/www/html/index.html"
             }
         }
